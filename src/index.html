@@ -121,7 +121,7 @@
           </div>
         </div>
       </div>
-      <div class="flex-1 max-h-screen p-8 overflow-y-scroll">
+      <div class="flex-1 max-h-screen px-8 py-12 overflow-y-scroll">
         <div id="dashboard" l-show="page == 0">
           <div class="banner overflow-hidden grid grid-cols-2 rounded-3xl mb-8">
             <div class="flex h-96">
@@ -170,7 +170,10 @@
               </div>
             </div>
           </div>
-          <p class="text-gray-800 font-bold text-base">Found # campaigns</p>
+        </div>
+        <div l-show="page == 1" id="campaigns">
+          <p class="text-gray-900 font-extrabold text-4xl tracking-tighter mb-2">Campaigns</p>
+          <span class="text-gray-500 font-medium text-base">Create, edit, and manage your campaigns here!</span>
           <div class="grid grid-cols-3 gap-8 mt-8">
             <div class="h-80 border-2 border-gray-100 rounded-lg"></div>
             <div class="h-80 border-2 border-gray-100 rounded-lg"></div>
