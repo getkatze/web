@@ -1,4 +1,3 @@
-// @ts-expect-error: urql doesn't have types
 import { createClient } from '@urql/core';
 
 const client = createClient({
