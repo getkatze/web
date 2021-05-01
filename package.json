@@ -20,5 +20,9 @@
     "rimraf": "^3.0.2",
     "sass": "^1.32.12",
     "tailwindcss": "^2.1.2"
+  },
+  "dependencies": {
+    "@urql/core": "^2.0.0",
+    "graphql": "^15.5.0"
   }
 }
