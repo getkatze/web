@@ -21,7 +21,9 @@
           el.classList.remove('text-gray-400');
           el.firstElementChild.classList.add('text-blue-600');
         }
-      } 
+      },
+    campaigns: [{name: 'lol'},{name: 'lol'},{name: 'lol'}]
+
     }"
   >
     <div class="flex">
@@ -56,7 +58,7 @@
             <div
               class="flex flex-1 cursor-pointer items-center p-3 rounded-xl text-gray-400 text-base font-semibold my-1"
               @click="changeTabs($el); page = 1;"
-              id="tab-campaigns"
+              id="tabCampaigns"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -150,7 +152,7 @@
               </p>
               <div
                 class="self-start cursor-pointer inline-flex items-center active:outline-none rounded-full bg-blue-500 text-white text-sm font-bold py-2 px-5"
-                @click="page = 1; changeTabs(document.querySelector('#tab-campaigns'))"
+                @click="page = 1; changeTabs(document.querySelector('#tabCampaigns'));"
               >
                 View Campaigns
                 <svg
@@ -173,15 +175,14 @@
         </div>
         <div l-show="page == 1" id="campaigns">
           <p class="text-gray-900 font-extrabold text-4xl tracking-tighter mb-2">Campaigns</p>
-          <span class="text-gray-500 font-medium text-base">Create, edit, and manage your campaigns here!</span>
-          <div class="grid grid-cols-3 gap-8 mt-8">
-            <div class="h-80 border-2 border-gray-100 rounded-lg"></div>
-            <div class="h-80 border-2 border-gray-100 rounded-lg"></div>
-            <div class="h-80 border-2 border-gray-100 rounded-lg"></div>
-            <div class="h-80 border-2 border-gray-100 rounded-lg"></div>
-            <div class="h-80 border-2 border-gray-100 rounded-lg"></div>
-            <div class="h-80 border-2 border-gray-100 rounded-lg"></div>
-            <div class="h-80 border-2 border-gray-100 rounded-lg"></div>
+          <span class="text-gray-500 font-medium text-base"
+            >Create, edit, and manage your campaigns here!</span
+          >
+          <div class="flex flex-1 justify-center mt-8" l-show="!campaigns.length > 0">
+            <span class="text-gray-400 font-medium text-base flex-1">There's nothing here!</span>
+          </div>
+          <div class="grid grid-cols-3 gap-8 mt-8" l-for="(item, index) in campaigns">
+            <div class="h-80 border-2 border-gray-100 rounded-lg" l-text="this.item.name"></div>
           </div>
         </div>
       </div>
