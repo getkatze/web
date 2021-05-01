@@ -1,5 +1,5 @@
-import { component, init } from 'lucia/dist/lucia.esm';
+import { init } from 'lucia/dist/lucia.esm';
+import Turbolinks from 'turbolinks';
 
 init();
-
-component({}).mount();
+Turbolinks.start();
