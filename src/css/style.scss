@@ -8,6 +8,14 @@ body {
   background: linear-gradient(180deg, #0d2e55 0%, #001a3a 100%);
 }
 
+.banner-light {
+  background: linear-gradient(180deg, #3B82F6 0%, #2c63bb 100%);
+}
+
 [l-mask] {
   display: none;
+}
+
+[l-show] {
+  transition: all 0.5s linear;
 }

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="./css/index.pcss" />
+    <link rel="stylesheet" href="./css/style.scss" />
+    <script src="./js/index.ts" defer></script>
+
+    <title>Dashboard | Katze</title>
+  </head>
+  <body
+    l-state="{
+      page: 0,
+      changeTabs: (el, num) => {
+          if (el.classList.contains('bg-blue-50')) {
+            return;
+          } else {
+            let active = document.querySelector('#menu .bg-blue-50');
+
+            active.classList.remove('bg-blue-50', 'text-gray-900')
+            active.classList.add('text-gray-400');
+            active.firstElementChild.classList.remove('text-blue-600');
+
+            el.classList.add('bg-blue-50', 'text-gray-900');
+            el.classList.remove('text-gray-400');
+            el.firstElementChild.classList.add('text-blue-600');
+          }
+        },
+      campaigns: [{name: 'lol'},{name: 'lol'},{name: 'lol'}]
+    }"
+  >
+    <div class="flex">
+      <div class="flex px-8 flex-col flex-1 border-r border-gray-100 h-screen max-w-xs">
+        <div class="flex py-10">
+          <h1 class="m-0 text-2xl font-extrabold tracking-tighter">Katze</h1>
+        </div>
+        <div id="menu">
+          <div class="flex">
+            <div
+              class="flex text-gray-900 bg-blue-50 cursor-pointer flex-1 items-center p-3 rounded-xl text-base font-semibold my-1"
+              @click="changeTabs($el); page = 0;"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-4 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"
+                />
+              </svg>
+              Dashboard
+            </div>
+          </div>
+          <div class="flex">
+            <div
+              class="flex flex-1 cursor-pointer items-center p-3 rounded-xl text-gray-400 text-base font-semibold my-1"
+              @click="changeTabs($el); page = 1;"
+              id="tabCampaigns"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"
+                />
+              </svg>
+              Campaigns
+            </div>
+          </div>
+          <div class="flex">
+            <div
+              class="flex flex-1 cursor-pointer items-center p-3 rounded-xl text-gray-400 text-base font-semibold my-1"
+              @click="changeTabs($el); page = 2;"
+              id="tabTasks"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
+                />
+              </svg>
+              Task Feed
+            </div>
+          </div>
+          <div class="flex">
+            <div
+              class="flex flex-1 cursor-pointer items-center p-3 rounded-xl text-gray-400 text-base font-semibold my-1"
+              @click="changeTabs($el); page = 3;"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
+                />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+              Settings
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="flex-1 max-h-screen px-8 py-12 overflow-y-scroll">
+        <div id="dashboard" l-show="page == 0">
+          <div class="banner overflow-hidden grid grid-cols-2 rounded-3xl mb-8">
+            <div class="flex h-96">
+              <div class="flex-1 mx-36 relative">
+                <img class="h-48 opacity-0 z-0 absolute -top-4 -left-16" src="assets/img/dots.svg" alt="" />
+                <img class="h-48 opacity-0 z-0 absolute top-40 -right-16" src="assets/img/dots.svg" alt="" />
+                <div class="z-10 h-full flex items-center relative">
+                  <img class="h-5/6" src="assets/img/banner-graphic-1.svg" alt="" />
+                </div>
+              </div>
+              <!-- <img class="h-4/5" src="./assets/img/banner-graphic-1.svg" /> -->
+            </div>
+            <div class="flex flex-1 flex-col justify-center px-16">
+              <h2 class="text-3xl font-bold text-white">Start a Campaign</h2>
+              <p class="text-md my-3 text-white opacity-60">
+                Campaigns are a way of organizing tasks requests, so that one can track progress among tasks, or modify how categorization is done.
+              </p>
+              <div
+                class="self-start cursor-pointer inline-flex items-center active:outline-none rounded-full bg-blue-500 text-white text-sm font-bold py-2 px-5"
+                @click="page = 1; changeTabs(document.querySelector('#tabCampaigns'));"
+              >
+                View Campaigns
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                </svg>
+              </div>
+            </div>
+          </div>
+          <div class="banner-light overflow-hidden grid grid-cols-2 rounded-3xl mb-8">
+            <div class="flex h-96">
+              <div class="flex-1 mx-36 relative">
+                <img class="h-48 opacity-0 z-0 absolute -top-4 -left-16" src="assets/img/dots.svg" alt="" />
+                <img class="h-48 opacity-0 z-0 absolute top-40 -right-16" src="assets/img/dots.svg" alt="" />
+                <div class="z-10 h-full flex items-center relative">
+                  <img class="h-5/6" src="assets/img/banner-graphic-2.svg" alt="" />
+                </div>
+              </div>
+              <!-- <img class="h-4/5" src="./assets/img/banner-graphic-1.svg" /> -->
+            </div>
+            <div class="flex flex-1 flex-col justify-center px-16">
+              <h2 class="text-3xl font-bold text-white">Categorize Tasks</h2>
+              <p class="text-md my-3 text-white opacity-60">
+                Tasks are part of campaigns, but you can categorize tasks and earn Dogecoin!
+              </p>
+              <div
+                class="self-start cursor-pointer inline-flex items-center active:outline-none rounded-full bg-white text-blue-500 text-sm font-bold py-2 px-5"
+                @click="page = 2; changeTabs(document.querySelector('#tabTasks'));"
+              >
+                View Tasks
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div l-show="page == 1" id="campaigns" l-mask>
+          <p class="text-gray-900 font-extrabold text-4xl tracking-tighter mb-2">Campaigns</p>
+          <span class="text-gray-500 font-medium text-base">Create, edit, and manage your campaigns here!</span>
+          <div class="flex flex-1 justify-center mt-8" l-show="!campaigns.length > 0">
+            <span class="text-gray-400 font-medium text-base flex-1">There's nothing here!</span>
+          </div>
+          <div class="grid grid-cols-3 gap-8 mt-8" l-for="(item, index) in campaigns">
+            <div class="flex flex-col relative h-80 p-8 border-2 border-gray-100 rounded-lg">
+              <div
+                class="flex flex-1 justify-between"
+                @click.outside="if (!$el.children[2].classList.contains('hidden')) { $el.children[2].classList.add('hidden') }"
+              >
+                <span l-text="this.item.name"></span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="cursor-pointer h-6 w-6 text-gray-400"
+                  onclick="this.nextElementSibling.classList.toggle('hidden')"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"
+                  />
+                </svg>
+                <div class="hidden absolute right-8 top-16 w-36 text-gray-900 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5">
+                  <div class="py-2 flex flex-col">
+                    <a class="cursor-pointer flex-1 px-3 py-1 text-sm hover:bg-gray-100">Edit</a>
+                    <a class="cursor-pointer flex-1 px-3 py-1 text-sm hover:bg-gray-100">Delete</a>
+                  </div>
+                </div>
+              </div>
+              <!-- <div class="flex justify-end">
+                <div class="inline-flex rounded-full text-sm font-bold py-2 px-5 bg-gray-200 text-black">Edit</div>
+                <div class="inline-flex rounded-full text-sm font-bold py-2 px-5 bg-red-500 text-white">Delete</div>
+              </div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script></script>
+  </body>
+</html>
