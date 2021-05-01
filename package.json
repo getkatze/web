@@ -5,12 +5,20 @@
   "author": "Aiden Bai <mail.contraband@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "sh dev.sh",
-    "build": "parcel build public/*.html && tailbuild dist/tailwind.css --files='./public/**/*.html'"
+    "dev": "rimraf ./.parcel-cache && parcel src/*.html --no-cache",
+    "build": "rimraf ./.parcel-cache && parcel build src/*.html"
   },
   "devDependencies": {
-    "concurrently": "^6.0.2",
+    "@fullhuman/postcss-purgecss": "^4.0.3",
+    "@parcel/transformer-sass": "2.0.0-beta.2",
+    "@primer/css": "^16.3.0",
+    "autoprefixer": "^10.2.5",
+    "lucia": "^0.5.1",
     "parcel": "^2.0.0-beta.2",
-    "tailbuild": "^1.1.1"
+    "parcel-plugin-ejs-template-vars": "^0.4.0",
+    "postcss": "^8.2.13",
+    "rimraf": "^3.0.2",
+    "sass": "^1.32.12",
+    "tailwindcss": "^2.1.2"
   }
 }

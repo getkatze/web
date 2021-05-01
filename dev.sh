@@ -1,1 +1,0 @@
-concurrently 'parcel public/*.html' 'tailbuild dist/tailwind.css --files="./public/**/*.html" --watch'
