@@ -5,130 +5,39 @@
     <link rel="stylesheet" href="./css/style.scss" />
     <script src="./js/index.ts" defer></script>
   </head>
-  <body>
+  <body
+    l-state="{ page: 0,
+    changeTabs: (el, num) => {
+        if (el.classList.contains('bg-blue-50')) {
+          return;
+        } else {
+          let active = document.querySelector('#menu .bg-blue-50');
+
+          active.classList.remove('bg-blue-50', 'text-gray-900')
+          active.classList.add('text-gray-400');
+          active.firstElementChild.classList.remove('text-blue-600');
+
+          el.classList.add('bg-blue-50', 'text-gray-900');
+          el.classList.remove('text-gray-400');
+          el.firstElementChild.classList.add('text-blue-600');
+        }
+      } 
+    }"
+  >
     <div class="flex">
       <div class="flex px-8 flex-col flex-1 border-r border-gray-100 h-screen max-w-xs">
         <div class="flex py-10">
           <h1 class="m-0 text-2xl font-extrabold tracking-tighter">Katze</h1>
         </div>
-        <div class="flex flex-col">
-          <div
-            class="flex bg-blue-50 flex-1 items-center p-3 rounded-xl text-base font-semibold my-1"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="h-5 w-5 mr-4 text-blue-600"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"
-              />
-            </svg>
-            Dashboard
-          </div>
-        </div>
-        <div class="flex flex-col">
-          <div
-            class="flex flex-1 items-center p-3 rounded-xl text-gray-400 text-base font-semibold my-1"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="h-5 w-5 mr-4"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"
-              />
-            </svg>
-            Idk Bro
-          </div>
-        </div>
-        <div class="flex flex-col">
-          <div
-            class="flex flex-1 items-center p-3 rounded-xl text-gray-400 text-base font-semibold my-1"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="h-5 w-5 mr-4"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"
-              />
-            </svg>
-            Dashboard
-          </div>
-        </div>
-        <div class="flex flex-col">
-          <div
-            class="flex flex-1 items-center p-3 rounded-xl text-gray-400 text-base font-semibold my-1"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="h-5 w-5 mr-4"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"
-              />
-            </svg>
-            Dashboard
-          </div>
-        </div>
-      </div>
-      <div class="flex-1 max-h-screen p-8 overflow-y-scroll">
-        <div class="banner overflow-hidden grid grid-cols-2 rounded-3xl mb-8">
-          <div class="flex h-96">
-            <div class="flex-1 mx-36 relative">
-              <img
-                class="h-48 opacity-0 z-0 absolute -top-4 -left-16"
-                src="assets/img/dots.svg"
-                alt=""
-              />
-              <img
-                class="h-48 opacity-0 z-0 absolute top-40 -right-16"
-                src="assets/img/dots.svg"
-                alt=""
-              />
-              <div class="z-10 h-full flex items-center relative">
-                <img class="h-5/6" src="assets/img/banner-graphic-1.svg" alt="" />
-              </div>
-            </div>
-            <!-- <img class="h-4/5" src="./assets/img/banner-graphic-1.svg" /> -->
-          </div>
-          <div class="flex flex-1 flex-col justify-center px-16">
-            <h2 class="text-3xl font-bold text-white">Lorem ipsum dolor.</h2>
-            <p class="text-md my-3 text-white opacity-60">
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Earum minima minus nesciunt
-              quo ipsa harum dignissimos error modi, nihil perspiciatis.
-            </p>
+        <div id="menu">
+          <div class="flex">
             <div
-              class="self-start inline-flex items-center active:outline-none rounded-full bg-blue-500 text-white text-sm font-bold py-2 px-5"
+              class="flex text-gray-900 bg-blue-50 cursor-pointer flex-1 items-center p-3 rounded-xl text-base font-semibold my-1"
+              @click="changeTabs($el); page = 0;"
             >
-              Lorem ipsum
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                class="h-6 w-6 ml-1"
+                class="h-5 w-5 mr-4 text-blue-600"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -137,23 +46,141 @@
                   stroke-linecap="round"
                   stroke-linejoin="round"
                   stroke-width="2"
-                  d="M13 7l5 5m0 0l-5 5m5-5H6"
+                  d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"
                 />
               </svg>
+              Dashboard
+            </div>
+          </div>
+          <div class="flex">
+            <div
+              class="flex flex-1 cursor-pointer items-center p-3 rounded-xl text-gray-400 text-base font-semibold my-1"
+              @click="changeTabs($el); page = 1;"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5 mr-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"
+                />
+              </svg>
+              Campaigns
+            </div>
+          </div>
+          <div class="flex">
+            <div
+              class="flex flex-1 cursor-pointer items-center p-3 rounded-xl text-gray-400 text-base font-semibold my-1"
+              @click="changeTabs($el); page = 2;"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5 mr-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"
+                />
+              </svg>
+              Dashboard
+            </div>
+          </div>
+          <div class="flex">
+            <div
+              class="flex flex-1 cursor-pointer items-center p-3 rounded-xl text-gray-400 text-base font-semibold my-1"
+              @click="changeTabs($el); page = 3;"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5 mr-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"
+                />
+              </svg>
+              Dashboard
             </div>
           </div>
         </div>
-        <p class="text-gray-800 font-bold text-base">Found # campaigns</p>
-        <div class="grid grid-cols-3 gap-8 mt-8">
-          <div class="h-80 border-2 border-gray-100 rounded-lg"></div>
-          <div class="h-80 border-2 border-gray-100 rounded-lg"></div>
-          <div class="h-80 border-2 border-gray-100 rounded-lg"></div>
-          <div class="h-80 border-2 border-gray-100 rounded-lg"></div>
-          <div class="h-80 border-2 border-gray-100 rounded-lg"></div>
-          <div class="h-80 border-2 border-gray-100 rounded-lg"></div>
-          <div class="h-80 border-2 border-gray-100 rounded-lg"></div>
+      </div>
+      <div class="flex-1 max-h-screen p-8 overflow-y-scroll">
+        <div id="dashboard" l-show="page == 0">
+          <div class="banner overflow-hidden grid grid-cols-2 rounded-3xl mb-8">
+            <div class="flex h-96">
+              <div class="flex-1 mx-36 relative">
+                <img
+                  class="h-48 opacity-0 z-0 absolute -top-4 -left-16"
+                  src="assets/img/dots.svg"
+                  alt=""
+                />
+                <img
+                  class="h-48 opacity-0 z-0 absolute top-40 -right-16"
+                  src="assets/img/dots.svg"
+                  alt=""
+                />
+                <div class="z-10 h-full flex items-center relative">
+                  <img class="h-5/6" src="assets/img/banner-graphic-1.svg" alt="" />
+                </div>
+              </div>
+              <!-- <img class="h-4/5" src="./assets/img/banner-graphic-1.svg" /> -->
+            </div>
+            <div class="flex flex-1 flex-col justify-center px-16">
+              <h2 class="text-3xl font-bold text-white">Lorem ipsum dolor.</h2>
+              <p class="text-md my-3 text-white opacity-60">
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Earum minima minus
+                nesciunt quo ipsa harum dignissimos error modi, nihil perspiciatis.
+              </p>
+              <div
+                class="self-start cursor-pointer inline-flex items-center active:outline-none rounded-full bg-blue-500 text-white text-sm font-bold py-2 px-5"
+              >
+                View Campaigns
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-6 w-6 ml-1"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M13 7l5 5m0 0l-5 5m5-5H6"
+                  />
+                </svg>
+              </div>
+            </div>
+          </div>
+          <p class="text-gray-800 font-bold text-base">Found # campaigns</p>
+          <div class="grid grid-cols-3 gap-8 mt-8">
+            <div class="h-80 border-2 border-gray-100 rounded-lg"></div>
+            <div class="h-80 border-2 border-gray-100 rounded-lg"></div>
+            <div class="h-80 border-2 border-gray-100 rounded-lg"></div>
+            <div class="h-80 border-2 border-gray-100 rounded-lg"></div>
+            <div class="h-80 border-2 border-gray-100 rounded-lg"></div>
+            <div class="h-80 border-2 border-gray-100 rounded-lg"></div>
+            <div class="h-80 border-2 border-gray-100 rounded-lg"></div>
+          </div>
         </div>
       </div>
     </div>
+    <script></script>
   </body>
 </html>
