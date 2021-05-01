@@ -26,37 +26,20 @@ const campaignsState = {
   },
 };
 
-const signup = async (username: string, password: string) => {
-  const user = await query(
-    `
-    mutation {
-      createUser(username: $name, password: $password){
-        username
-      }
-    }
-    `,
-    {
-      name: username,
-      pass: password,
-    }
-  );
-
-  return user.data.createUser.username;
-};
 
 interface campaigns {
-  id: string,
-  name: string,
-  contractor: string,
-  description: string,
-  totalPrizeAmount?: number,
-  participantLimit?: number,
-  completed: boolean,
+  id: string;
+  name: string;
+  contractor: string;
+  description: string;
+  totalPrizeAmount?: number;
+  participantLimit?: number;
+  completed: boolean;
 }
 
 const ownedCampaigns = async (name: string): Promise<campaigns[]> => {
   let { data } = await query(
-  `
+    `
   query {
     campaigns(user: $name){
       id
@@ -77,7 +60,7 @@ const ownedCampaigns = async (name: string): Promise<campaigns[]> => {
 
 const login = async (username: string, password: string): Promise<boolean> => {
   let data = await query(
-  `
+    `
   query {
     login(username: $name, password: $pass) {
       id
@@ -92,4 +75,22 @@ const login = async (username: string, password: string): Promise<boolean> => {
   } else {
     return false;
   }
+};
+
+const signup = async (username: string, password: string) => {
+  const user = await query(
+    `
+    mutation {
+      createUser(username: $name, password: $password){
+        username
+      }
+    }
+    `,
+    {
+      name: username,
+      pass: password,
+    }
+  );
+
+  return user.data.createUser.username;
 };
