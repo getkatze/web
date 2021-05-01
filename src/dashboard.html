@@ -29,7 +29,8 @@
             el.firstElementChild.classList.add('text-blue-600');
           }
         },
-      campaigns: [{name: 'lol'},{name: 'lol'},{name: 'lol'}]
+      campaigns: [{name: 'lol'},{name: 'lol'},{name: 'lol'},{name: 'lol'}],
+      tasks: [{name: 'lol'},{name: 'lol'},{name: 'lol'},{name: 'lol'}]
     }"
   >
     <div class="flex">
@@ -107,7 +108,7 @@
           </div>
         </div>
       </div>
-      <div class="flex-1 max-h-screen px-8 py-12 overflow-y-scroll">
+      <div class="flex-1 max-h-screen px-8 py-12 overflow-y-scroll bg-gray-50">
         <div id="dashboard" l-show="page == 0">
           <div class="banner overflow-hidden grid grid-cols-2 rounded-3xl mb-8">
             <div class="flex h-96">
@@ -126,7 +127,7 @@
                 Campaigns are a way of organizing tasks requests, so that one can track progress among tasks, or modify how categorization is done.
               </p>
               <div
-                class="self-start cursor-pointer inline-flex items-center active:outline-none rounded-full bg-blue-500 text-white text-sm font-bold py-2 px-5"
+                class="self-start cursor-pointer inline-flex items-center active:outline-none rounded-full bg-blue-500 transition-all hover:shadow-lg text-white text-sm font-bold py-2 px-5"
                 @click="page = 1; changeTabs(document.querySelector('#tabCampaigns'));"
               >
                 View Campaigns
@@ -151,7 +152,7 @@
               <h2 class="text-3xl font-bold text-white">Categorize Tasks</h2>
               <p class="text-md my-3 text-white opacity-60">Tasks are part of campaigns, but you can categorize tasks and earn Dogecoin!</p>
               <div
-                class="self-start cursor-pointer inline-flex items-center active:outline-none rounded-full bg-white text-blue-500 text-sm font-bold py-2 px-5"
+                class="self-start cursor-pointer inline-flex items-center active:outline-none rounded-full bg-white transition-all hover:shadow-lg text-blue-500 text-sm font-bold py-2 px-5"
                 @click="page = 2; changeTabs(document.querySelector('#tabTasks'));"
               >
                 View Tasks
@@ -164,9 +165,9 @@
         </div>
         <div l-show="page == 1" id="campaigns" l-mask>
           <div class="flex flex-1 justify-between">
-            <p class="text-gray-900 font-extrabold text-4xl tracking-tighter mb-2">Campaigns</p>
+            <p class="text-gray-900 font-extrabold text-4xl tracking-tighter">Campaigns</p>
             <div
-              class="self-end cursor-pointer inline-flex items-center active:outline-none rounded-full bg-blue-500 text-white text-base font-bold py-2 px-5"
+              class="self-end cursor-pointer inline-flex items-center active:outline-none rounded-full bg-blue-500 transition-all hover:shadow-lg text-white text-base font-bold py-2 px-5"
               @click="document.querySelector('#createEditModal').classList.remove('hidden')"
             >
               Create a campaign
@@ -175,10 +176,17 @@
           <div class="flex flex-1 justify-center mt-8" l-show="!campaigns.length > 0">
             <span class="text-gray-400 font-medium text-base flex-1">There's nothing here!</span>
           </div>
-          <div class="grid grid-cols-3 gap-8 mt-8" l-for="(item, index) in campaigns">
-            <div class="flex flex-col relative h-80 p-8 border-2 border-gray-100 rounded-lg">
-              <div class="flex flex-1 justify-between">
-                <span l-text="this.item.name"></span>
+          <div class="grid grid-flow-row-dense grid-cols-3 gap-8 mt-8" l-for="(item, index) in campaigns">
+            <div class="flex flex-col relative p-8 ring-1 ring-black ring-opacity-5 transition-all hover:shadow-lg bg-white rounded-lg">
+              <div class="flex mb-2 justify-between">
+                <!-- <span l-text="this.item.name"></span> -->
+                <div class="space-y-2">
+                  <h1 class="text-lg font-semibold">My Campaign Name</h1>
+                  <ul class="space-x-1">
+                    <li class="inline-block rounded-md bg-gray-100 text-gray-600 py-1 px-3 font-medium text-sm">0 participants</li>
+                    <li class="inline-block rounded-md bg-green-100 text-green-600 py-1 px-3 font-medium text-sm">Completed</li>
+                  </ul>
+                </div>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   class="cursor-pointer h-6 w-6 text-gray-400"
@@ -284,7 +292,7 @@
                         </div>
                         <div class="flex flex-1 mt-4 justify-end">
                           <div
-                            class="cursor-pointer inline-flex items-center active:outline-none rounded-full bg-blue-500 text-white text-sm font-bold py-2 px-5"
+                            class="cursor-pointer inline-flex items-center active:outline-none rounded-full bg-blue-500 transition-all hover:shadow-lg transition-all hover:shadow-lg text-white text-sm font-bold py-2 px-5"
                           >
                             Save Changes
                           </div>
@@ -350,6 +358,34 @@
                       </div>
                     </div>
                   </div>
+                </div>
+              </div>
+              <p
+                class="flex-1 text-gray-500 break-words"
+                l-text="this.item.description || 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem, assumenda!'"
+              ></p>
+            </div>
+          </div>
+        </div>
+        <div l-show="page == 2" id="taskFeed" l-mask>
+          <div class="flex flex-1 justify-between mb-8">
+            <p class="text-gray-900 self-end font-extrabold text-4xl tracking-tighter">Task Feed</p>
+            <div
+              class="cursor-pointer inline-flex items-center active:outline-none rounded-full bg-blue-500 transition-all hover:shadow-lg text-white text-base font-bold py-2 px-5"
+            >
+              Create a new task
+            </div>
+          </div>
+          <div class="space-y-4" l-for="(item, index) in tasks">
+            <div class="flex flex-1">
+              <div class="flex-1 ring-1 ring-black ring-opacity-5 transition-all hover:shadow-lg bg-white p-8 rounded-lg">
+                <div class="flex-1 space-y-2">
+                  <h1 class="text-lg font-medium text-gray-900">New task from <span class="font-bold">Campaign Name</span></h1>
+                  <!-- <span class="text-gray-500 text-sm">By contractorName &middot; Feb 18, 2020</span> -->
+                  <ul class="space-x-1">
+                    <li class="inline-block rounded-md bg-gray-100 text-gray-400 py-1 px-3 font-medium text-sm">Category1</li>
+                    <li class="inline-block rounded-md bg-gray-100 text-gray-400 py-1 px-3 font-medium text-sm">Category1</li>
+                  </ul>
                 </div>
               </div>
             </div>
