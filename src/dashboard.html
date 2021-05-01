@@ -163,8 +163,15 @@
           </div>
         </div>
         <div l-show="page == 1" id="campaigns" l-mask>
-          <p class="text-gray-900 font-extrabold text-4xl tracking-tighter mb-2">Campaigns</p>
-          <span class="text-gray-500 font-medium text-base">Create, edit, and manage your campaigns here!</span>
+          <div class="flex flex-1 justify-between">
+            <p class="text-gray-900 font-extrabold text-4xl tracking-tighter mb-2">Campaigns</p>
+            <div
+              class="self-end cursor-pointer inline-flex items-center active:outline-none rounded-full bg-blue-500 text-white text-base font-bold py-2 px-5"
+              @click="document.querySelector('#createEditModal').classList.remove('hidden')"
+            >
+              Create a campaign
+            </div>
+          </div>
           <div class="flex flex-1 justify-center mt-8" l-show="!campaigns.length > 0">
             <span class="text-gray-400 font-medium text-base flex-1">There's nothing here!</span>
           </div>
@@ -191,7 +198,7 @@
                   <div class="py-2 flex flex-col">
                     <a
                       class="cursor-pointer flex-1 px-3 py-1 text-sm hover:bg-gray-100"
-                      @click="document.querySelector('#editModal').classList.remove('hidden');$el.closest('.ring-1').classList.add('hidden')"
+                      @click="document.querySelector('#createEditModal').classList.remove('hidden');$el.closest('.ring-1').classList.add('hidden')"
                       >Edit</a
                     >
                     <a
@@ -201,7 +208,7 @@
                     >
                   </div>
                 </div>
-                <div id="editModal" class="hidden fixed z-10 inset-0">
+                <div id="createEditModal" class="hidden fixed z-10 inset-0">
                   <div class="flex min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
                     <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
                     <div
@@ -211,7 +218,7 @@
                         <h1 class="text-2xl font-bold text-left text-gray-900 tracking-tighter">Edit Campaign Information</h1>
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
-                          onclick="document.querySelector('#editModal').classList.add('hidden')"
+                          onclick="document.querySelector('#createEditModal').classList.add('hidden')"
                           class="h-6 w-6 cursor-pointer"
                           fill="none"
                           viewBox="0 0 24 24"
