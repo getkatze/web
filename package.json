@@ -1,8 +1,16 @@
 {
   "name": "web",
   "version": "1.0.0",
-  "main": "index.js",
   "repository": "https://github.com/getkatze/web.git",
   "author": "Aiden Bai <mail.contraband@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "dev": "sh dev.sh",
+    "build": "parcel build public/*.html && tailbuild dist/tailwind.css --files='./public/**/*.html'"
+  },
+  "devDependencies": {
+    "concurrently": "^6.0.2",
+    "parcel": "^2.0.0-beta.2",
+    "tailbuild": "^1.1.1"
+  }
 }
