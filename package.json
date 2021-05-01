@@ -6,25 +6,29 @@
   "license": "MIT",
   "scripts": {
     "dev": "rimraf ./.parcel-cache && parcel src/*.html --no-cache",
-    "build": "rimraf ./.parcel-cache && parcel build src/*.html",
+    "build": "rimraf ./.parcel-cache ./dist && parcel build src/*.html",
     "cleanup": "prettier --write src --parser typescript"
   },
   "devDependencies": {
     "@fullhuman/postcss-purgecss": "^4.0.3",
     "@parcel/transformer-sass": "2.0.0-beta.2",
     "autoprefixer": "^10.2.5",
-    "lucia": "^0.5.1",
     "parcel": "^2.0.0-beta.2",
     "postcss": "^8.2.13",
     "rimraf": "^3.0.2",
-    "sass": "^1.32.12",
-    "tailwindcss": "^2.1.2"
+    "sass": "^1.32.12"
   },
   "dependencies": {
     "@urql/core": "^2.0.0",
-    "graphql": "^15.5.0"
+    "graphql": "^15.5.0",
+    "lucia": "^0.5.1",
+    "tailwindcss": "^2.1.2"
   },
   "engines": {
     "node": ">=0.14"
-  }
+  },
+  "browserslist": [
+    "> 0.2%",
+    "not dead"
+  ]
 }
