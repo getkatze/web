@@ -1,3 +1,5 @@
-import { init } from 'lucia/dist/lucia.esm';
+import { component, init } from 'lucia/dist/lucia.esm';
 
 init();
+
+component({}).mount();

@@ -6,7 +6,8 @@
   "license": "MIT",
   "scripts": {
     "dev": "rimraf ./.parcel-cache && parcel src/*.html --no-cache",
-    "build": "rimraf ./.parcel-cache && parcel build src/*.html"
+    "build": "rimraf ./.parcel-cache && parcel build src/*.html",
+    "cleanup": "prettier --write src --parser typescript"
   },
   "devDependencies": {
     "@fullhuman/postcss-purgecss": "^4.0.3",
@@ -24,5 +25,8 @@
   "dependencies": {
     "@urql/core": "^2.0.0",
     "graphql": "^15.5.0"
+  },
+  "engines": {
+    "node": ">=0.14"
   }
 }
