@@ -189,7 +189,7 @@
               <div class="flex mb-2 justify-between">
                 <!-- <span l-text="this.item.name"></span> -->
                 <div class="space-y-2">
-                  <h1 class="text-lg font-semibold">My Campaign Name</h1>
+                  <h1 class="text-lg font-semibold">My Campapign Name</h1>
                   <ul class="space-x-1">
                     <li class="inline-block rounded-md bg-gray-100 text-gray-600 py-1 px-3 font-normal text-sm">0 participants</li>
                     <li class="inline-block rounded-md bg-green-100 text-green-600 py-1 px-3 font-normal text-sm">Completed</li>
@@ -224,7 +224,7 @@
                     >
                   </div>
                 </div>
-                <div id="createEditModal" class="hidden fixed z-10 inset-0">
+                <div id="createEditModal" class="hidden fixed overflow-y-scroll z-10 inset-0">
                   <div class="flex min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
                     <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
                     <div
@@ -254,7 +254,7 @@
                             />
                           </div>
                           <div class="flex flex-col flex-1">
-                            <label for="status" class="text-sm mb-1 font-normal">Campaign</label>
+                            <label for="status" class="text-sm mb-1 font-normal">Status</label>
                             <select
                               class="text-base rounded-md border border-gray-300 p-4 flex-1 focus:outline-none focus:border-blue-400"
                               name="status"
@@ -298,14 +298,78 @@
                             ></textarea>
                           </div>
                         </div>
-                        <div class="flex flex-1 mt-4 justify-end">
-                          <div
-                            class="cursor-pointer inline-flex items-center active:outline-none rounded-full bg-blue-500 transition-all hover:shadow-lg transition-all hover:shadow-lg text-white text-sm font-bold py-2 px-5"
-                          >
-                            Save Changes
+                      </form>
+                      <div>
+                        <!--Only show if the modal is in edit mode or something-->
+                        <div class="border-t border-gray-200 my-8"></div>
+
+                        <div class="flex flex-nowrap space-x-2">
+                          <div class="flex flex-col flex-1">
+                            <span class="font-medium text-md mb-2">Manage tasks</span>
+                            <table class="border border-collapse border-gray-200">
+                              <thead class="hidden">
+                                <tr>
+                                  <th class="py-2 px-3">Name</th>
+                                  <th class="py-2 px-3">Action</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr>
+                                  <td class="py-2 px-3">lol</td>
+                                  <td class="py-2 px-3">lol</td>
+                                </tr>
+                                <tr>
+                                  <td class="py-2 px-3">lol</td>
+                                  <td class="py-2 px-3">lol</td>
+                                </tr>
+                                <tr>
+                                  <td class="py-2 px-3">lol</td>
+                                  <td class="py-2 px-3">lol</td>
+                                </tr>
+                                <tr>
+                                  <td class="py-2 px-3">lol</td>
+                                  <td class="py-2 px-3">lol</td>
+                                </tr>
+                                <tr>
+                                  <td class="py-2 px-3">lol</td>
+                                  <td class="py-2 px-3">lol</td>
+                                </tr>
+                                <tr>
+                                  <td class="py-2 px-3">lol</td>
+                                  <td class="py-2 px-3">lol</td>
+                                </tr>
+                                <tr>
+                                  <td class="py-2 px-3">lol</td>
+                                  <td class="py-2 px-3">lol</td>
+                                </tr>
+                                <tr>
+                                  <td class="py-2 px-3">lol</td>
+                                  <td class="py-2 px-3">lol</td>
+                                </tr>
+                                <tr>
+                                  <td class="py-2 px-3">lol</td>
+                                  <td class="py-2 px-3">lol</td>
+                                </tr>
+                                <tr>
+                                  <td class="py-2 px-3">lol</td>
+                                  <td class="py-2 px-3">lol</td>
+                                </tr>
+                                <tr>
+                                  <td class="py-2 px-3">lol</td>
+                                  <td class="py-2 px-3">lol</td>
+                                </tr>
+                              </tbody>
+                            </table>
                           </div>
                         </div>
-                      </form>
+                      </div>
+                      <div class="flex flex-1 mt-4 justify-end">
+                        <div
+                          class="cursor-pointer inline-flex items-center active:outline-none rounded-full bg-blue-500 transition-all hover:shadow-lg transition-all hover:shadow-lg text-white text-sm font-bold py-2 px-5"
+                        >
+                          Save Changes
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -339,10 +403,10 @@
                             />
                           </div>
                           <div class="flex flex-col flex-1">
-                            <label for="status" class="text-sm mb-1 font-normal">Status</label>
+                            <label for="campaign" class="text-sm mb-1 font-normal">Campaign</label>
                             <select
                               class="text-base rounded-md border border-gray-300 p-4 flex-1 focus:outline-none focus:border-blue-400"
-                              name="status"
+                              name="campaign"
                               type="text"
                             >
                               <option value="campaign1">My Campaign Name</option>
@@ -354,10 +418,10 @@
                         </div>
                         <div class="flex flex-nowrap space-x-2">
                           <div class="flex flex-col flex-1">
-                            <label for="prize" class="text-sm mb-1 font-normal">Prize amount</label>
+                            <label for="category" class="text-sm mb-1 font-normal">Category</label>
                             <input
                               class="text-base rounded-md border border-gray-300 p-4 flex-1 focus:outline-none focus:border-blue-400"
-                              name="prize"
+                              name="category"
                               type="text"
                             />
                           </div>
