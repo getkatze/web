@@ -5,6 +5,7 @@ module.exports = {
       minifyFontValues: {
         removeQuotes: false,
       },
+      normalizeUrl: false,
     },
   ],
 };
