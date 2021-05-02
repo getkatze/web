@@ -13,8 +13,13 @@
   </head>
   <body
     l-state="{
+        revealFirst() {
+            if (document.querySelector('.task')) {
+                document.querySelector('.task:first-of-type .hidden').classList.remove('hidden');
+            }
+        },
       tasks: [{name: 'lol'},{name: 'lol'},{name: 'lol'},{name: 'lol'}],
-      completeTask: (ans) => {
+      completeTask(ans) {
         let task = ans.closest('.task');
         task.querySelectorAll('button').forEach(el => el.disabled = true);
         setTimeout(() => {
@@ -22,7 +27,7 @@
           task.style.opacity = 0;
           setTimeout(() => {
             task.remove();
-            document.querySelector('.task:first-of-type .hidden').classList.remove('hidden');
+            this.revealFirst();
           }, 500)
         }, 2000);
 
@@ -31,7 +36,7 @@
         ans.textContent = 'Thanks! 😊'
       }
       }"
-    @mounted="document.querySelector('.task:first-of-type .hidden').classList.remove('hidden');"
+    @mounted="revealFirst"
   >
     <div class="flex">
       <div class="flex px-8 flex-col flex-1 border-r border-gray-100 h-screen max-w-xs">
@@ -98,7 +103,7 @@
           </div>
         </div>
       </div>
-      <div class="flex-1 max-h-screen px-8 py-12 overflow-y-scroll bg-gray-50">
+      <div class="flex-1 max-h-screen px-8 py-12 overflow-y-scroll bg-gray-50" l-mask>
         <div class="flex flex-1 justify-between mb-8">
           <p class="text-gray-900 self-end font-extrabold text-4xl tracking-tighter">Task Feed</p>
         </div>
