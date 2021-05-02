@@ -27,6 +27,8 @@
             el.classList.add('bg-blue-50', 'text-gray-900');
             el.classList.remove('text-gray-400');
             el.firstElementChild.classList.add('text-blue-600');
+
+            if (el.innerText === 'Task Feed' || el.innerText === 'View Tasks') document.querySelector('.task:first-of-type .hidden').classList.remove('hidden');
           }
         },
       campaigns: [{name: 'lol'},{name: 'lol'},{name: 'lol'},{name: 'lol'}],
@@ -35,11 +37,13 @@
         let task = ans.closest('.task');
         task.querySelectorAll('button').forEach(el => el.disabled = true);
         setTimeout(() => {
+          task.style.transform = 'translateY(30px)';
           task.style.opacity = 0;
           setTimeout(() => {
             task.remove();
+            document.querySelector('.task:first-of-type .hidden').classList.remove('hidden');
           }, 500)
-        }, 3000);
+        }, 2000);
 
         ans.classList.remove('text-gray-700', 'bg-white');
         ans.classList.add('bg-green-500', 'text-white');
@@ -202,7 +206,10 @@
           </div>
           <div class="grid grid-flow-row-dense grid-cols-3 gap-8 mt-8" l-for="(item, index) in campaigns">
             <div class="flex flex-col relative p-8 ring-1 ring-black ring-opacity-5 transition-all hover:shadow-lg bg-white rounded-lg">
-              <div class="flex mb-2 justify-between" @click.outside="if (!$el.children[2].classList.contains('hidden')) { $el.children[2].classList.add('hidden') }">
+              <div
+                class="flex mb-2 justify-between"
+                @click.outside="if (!$el.children[2].classList.contains('hidden')) { $el.children[2].classList.add('hidden') }"
+              >
                 <!-- <span l-text="this.item.name"></span> -->
                 <div class="space-y-2">
                   <h1 class="text-lg font-semibold">My Campapign Name</h1>
@@ -558,7 +565,7 @@
                     <li class="inline-block rounded-md bg-gray-100 text-gray-400 py-1 px-3 font-normal text-sm">Category1</li>
                   </ul>
                 </div>
-                <div class="flex flex-1 flex-col items-center p-8">
+                <div class="hidden flex flex-1 flex-col items-center p-8">
                   <blockquote class="w-1/2 mb-8 rounded-md serif-custom tracking-wide leading-relaxed border-l-8 border-gray-300 bg-gray-100 p-12">
                     Lorem ipsum dolor, sit amet consectetur adipisicing elit. Rerum et unde adipisci quas accusantium expedita vitae maxime commodi
                     saepe debitis animi veniam autem <em>dolores distinctio</em> vero provident praesentium reprehenderit temporibus, ut tenetur
