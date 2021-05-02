@@ -1,17 +1,30 @@
+// @ts-nocheck
+
 import { init, component } from 'lucia/dist/lucia.esm';
 import { query, client } from './query';
 
 init();
 
 const campaignsState = component({
-  campaigns: [{
-   name: "Welcome to Katze!",
-   description: "Welcome to Katze! We hope you have a great time using the app!! :)",
-   completed: false,
-  }, {
-    name: "Lemons or oranges?", description: "uwu, completed: false", completed: false
-  }],
-  a: "something",
+  campaigns: [
+    {
+      name: 'Welcome to Katze!',
+      description: 'Welcome to Katze! We hope you have a great time using the app!! :)',
+      completed: false,
+    },
+    {
+      name: 'Lemons or oranges?',
+      description: 'uwu, completed: false',
+      completed: false,
+    },
+  ],
+  a: 'something',
+  modalType: '',
+  createEditModal: function(elem) {
+    let modal = document.querySelector('#createEditModal');
+    modal.classList.remove('hidden');
+    elem.innerText === 'Create campaign' ? (this.modalType = 'create') : (this.modalType = 'edit');
+  },
   async setCampaigns() {
     const campaignQuery = `
     query {
@@ -31,7 +44,7 @@ const campaignsState = component({
   },
 });
 
-campaignsState.mount("#campaignHtml")
+campaignsState.mount('#campaignHtml');
 
 interface campaigns {
   id: string;
@@ -64,10 +77,10 @@ const ownedCampaigns = async (name: string): Promise<campaigns[]> => {
   return data.campaigns;
 };
 
-
 const createCampaign = async (userId: string, name: string, description: string) => {
-  client.mutation(
-    `
+  client
+    .mutation(
+      `
     mutation CreateCampaign($name: String!,
       $contractor: String!,
       $options: [String!]!,
@@ -86,20 +99,23 @@ const createCampaign = async (userId: string, name: string, description: string)
         description
       }
     }
-    `, {
-    name: name,
-    contractor: userId,
-    options: ["a", "b"],
-    description: description,
-  }).toPromise().then(result => {
-    if(result.data) {
-      return result.data
-    }
-    else {
-      return false
-    }
-  })
-}
+    `,
+      {
+        name: name,
+        contractor: userId,
+        options: ['a', 'b'],
+        description: description,
+      }
+    )
+    .toPromise()
+    .then((result) => {
+      if (result.data) {
+        return result.data;
+      } else {
+        return false;
+      }
+    });
+};
 
 const login = async (username: string, password: string): Promise<boolean> => {
   let data = await query(
@@ -138,16 +154,16 @@ const signup = async (username: string, password: string) => {
   return user.data.createUser.username;
 };
 
-let campaignForm = document.getElementById("campaignButton");
-campaignForm.addEventListener("click", async () => {
-  console.log("smh");
-  let name = document.getElementById("campaignFormName").value;
-  let description = document.getElementById("campaignFormDescription").value;
-  console.log(`name: ${name}`)
-  let a=  await createCampaign('John Doe', name, description);
-    campaignsState.campaigns.push({
-      name: a.name,
-      description: a.description,
-      completed: a.completed
-    })
-})
+let campaignForm = document.getElementById('campaignButton');
+campaignForm.addEventListener('click', async () => {
+  console.log('smh');
+  let name = document.getElementById('campaignFormName').value;
+  let description = document.getElementById('campaignFormDescription').value;
+  console.log(`name: ${name}`);
+  let a = await createCampaign('John Doe', name, description);
+  campaignsState.campaigns.push({
+    name: a.name,
+    description: a.description,
+    completed: a.completed,
+  });
+});
