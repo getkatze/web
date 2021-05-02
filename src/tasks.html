@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="./css/index.pcss" />
+    <link rel="stylesheet" href="./css/style.scss" />
+    <script src="./js/index.ts" defer></script>
+
+    <title>Campaigns | Katze</title>
+  </head>
+  <body
+    l-state="{
+      tasks: [{name: 'lol'},{name: 'lol'},{name: 'lol'},{name: 'lol'}],
+      completeTask: (ans) => {
+        let task = ans.closest('.task');
+        task.querySelectorAll('button').forEach(el => el.disabled = true);
+        setTimeout(() => {
+          task.style.transform = 'translateY(30px)';
+          task.style.opacity = 0;
+          setTimeout(() => {
+            task.remove();
+            document.querySelector('.task:first-of-type .hidden').classList.remove('hidden');
+          }, 500)
+        }, 2000);
+
+        ans.classList.remove('text-gray-700', 'bg-white');
+        ans.classList.add('bg-green-500', 'text-white');
+        ans.textContent = 'Thanks! 😊'
+      }
+      }"
+    @mounted="document.querySelector('.task:first-of-type .hidden').classList.remove('hidden');"
+  >
+    <div class="flex">
+      <div class="flex px-8 flex-col flex-1 border-r border-gray-100 h-screen max-w-xs">
+        <div class="flex items-center py-10 space-x-2">
+          <img src="assets/img/logo.svg" alt="ugly cat" class="h-16 w-16" />
+          <h1 class="m-0 text-4xl text-gray-900 font-extrabold tracking-tighter">Katze</h1>
+        </div>
+        <div id="menu">
+          <div class="flex">
+            <a href="./dashboard.html" class="flex text-gray-400 cursor-pointer flex-1 items-center p-3 rounded-xl text-base font-medium my-1">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"
+                />
+              </svg>
+              Dashboard
+            </a>
+          </div>
+          <div class="flex">
+            <a href="./campaigns.html" class="flex flex-1 cursor-pointer items-center p-3 rounded-xl text-gray-400 text-base font-medium my-1">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"
+                />
+              </svg>
+              Campaigns
+            </a>
+          </div>
+          <div class="flex">
+            <a
+              href="#"
+              class="flex flex-1 cursor-pointer items-center text-gray-900 bg-blue-50 p-3 rounded-xl text-gray-400 text-base font-medium my-1"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-4 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
+                />
+              </svg>
+              Task Feed
+            </a>
+          </div>
+          <div class="flex">
+            <div class="flex flex-1 cursor-pointer items-center p-3 rounded-xl text-gray-400 text-base font-medium my-1">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
+                />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+              Settings
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="flex-1 max-h-screen px-8 py-12 overflow-y-scroll bg-gray-50">
+        <div class="flex flex-1 justify-between mb-8">
+          <p class="text-gray-900 self-end font-extrabold text-4xl tracking-tighter">Task Feed</p>
+        </div>
+        <div class="space-y-4" l-for="(item, index) in tasks">
+          <div class="task flex flex-1 transition-all duration-500">
+            <div class="flex-1 justify-between ring-1 ring-black ring-opacity-5 transition-all hover:shadow-lg bg-white rounded-lg">
+              <div class="space-y-2 border-b border-gray-100 p-8">
+                <h1 class="text-lg font-normal text-gray-900">New task from <span class="font-bold">Campaign Name</span></h1>
+                <ul class="space-x-1">
+                  <li class="inline-block rounded-md bg-gray-100 text-gray-400 py-1 px-3 font-normal text-sm">Category1</li>
+                  <li class="inline-block rounded-md bg-gray-100 text-gray-400 py-1 px-3 font-normal text-sm">Category1</li>
+                </ul>
+              </div>
+              <div class="hidden flex flex-1 flex-col items-center p-8">
+                <blockquote class="w-1/2 mb-8 rounded-md serif-custom tracking-wide leading-relaxed border-l-8 border-gray-300 bg-gray-100 p-12">
+                  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Rerum et unde adipisci quas accusantium expedita vitae maxime commodi
+                  saepe debitis animi veniam autem <em>dolores distinctio</em> vero provident praesentium reprehenderit temporibus, ut tenetur
+                  quisquam quia error corporis sequi! Animi, voluptatem laboriosam?
+                </blockquote>
+                <div class="flex flex-wrap w-4/5 justify-center content-around">
+                  <button
+                    class="m-1 cursor-pointer rounded-md border border-gray-300 shadow-sm text-base px-8 py-3 bg-white font-normal transition-all hover:shadow-md text-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                    @click="completeTask($el)"
+                  >
+                    this is a test answer
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
