@@ -1,8 +1,6 @@
 import { init, component } from 'lucia/dist/lucia.esm';
 import query from './query';
-import Turbolinks from 'turbolinks';
 
-Turbolinks.start();
 init();
 
 const campaignsState = {
