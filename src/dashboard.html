@@ -30,13 +30,28 @@
           }
         },
       campaigns: [{name: 'lol'},{name: 'lol'},{name: 'lol'},{name: 'lol'}],
-      tasks: [{name: 'lol'},{name: 'lol'},{name: 'lol'},{name: 'lol'}]
+      tasks: [{name: 'lol'},{name: 'lol'},{name: 'lol'},{name: 'lol'}],
+      completeTask: (ans) => {
+        let task = ans.closest('.task');
+        task.querySelectorAll('button').forEach(el => el.disabled = true);
+        setTimeout(() => {
+          task.style.opacity = 0;
+          setTimeout(() => {
+            task.remove();
+          }, 500)
+        }, 3000);
+
+        ans.classList.remove('text-gray-700', 'bg-white');
+        ans.classList.add('bg-green-500', 'text-white');
+        ans.textContent = 'Thanks! 😊'
+
+      }
     }"
   >
     <div class="flex">
       <div class="flex px-8 flex-col flex-1 border-r border-gray-100 h-screen max-w-xs">
         <div class="flex items-center py-10 space-x-2">
-          <img src="assets/img/logo.svg" alt="ugly cat" class="h-16 w-16">
+          <img src="assets/img/logo.svg" alt="ugly cat" class="h-16 w-16" />
           <h1 class="m-0 text-4xl text-gray-900 font-extrabold tracking-tighter">Katze</h1>
         </div>
         <div id="menu">
@@ -124,7 +139,7 @@
             </div>
             <div class="flex flex-1 flex-col justify-center px-16">
               <h2 class="text-3xl font-bold text-white">Start a Campaign</h2>
-              <p class="text-md my-3 text-white opacity-60">
+              <p class="my-3 text-white opacity-60">
                 Campaigns are a way of organizing tasks requests, so that one can track progress among tasks, or modify how categorization is done.
               </p>
               <div
@@ -151,7 +166,7 @@
             </div>
             <div class="flex flex-1 flex-col justify-center px-16">
               <h2 class="text-3xl font-bold text-white">Categorize Tasks</h2>
-              <p class="text-md my-3 text-white opacity-60">Tasks are part of campaigns, but you can categorize tasks and earn Dogecoin!</p>
+              <p class="my-3 text-white opacity-60">Tasks are part of campaigns, but you can categorize tasks and earn Dogecoin!</p>
               <div
                 class="self-start cursor-pointer inline-flex items-center active:outline-none rounded-full bg-white transition-all hover:shadow-lg text-blue-500 text-sm font-bold py-2 px-5"
                 @click="page = 2; changeTabs(document.querySelector('#tabTasks'));"
@@ -232,7 +247,7 @@
                       class="lg:w-5/12 md:w-3/4 inline-block mt-20 p-8 bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all"
                     >
                       <div class="flex flex-1 justify-between mb-6">
-                        <h1 class="text-2xl font-bold text-left text-gray-900 tracking-tighter">Edit Campaign Information</h1>
+                        <h1 class="text-3xl font-bold text-left text-gray-900 tracking-tighter">Edit Campaign Information</h1>
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           onclick="document.querySelector('#createEditModal').classList.add('hidden')"
@@ -306,7 +321,7 @@
 
                         <div class="flex flex-nowrap space-x-2">
                           <div class="flex flex-col flex-1">
-                            <span class="font-medium text-md mb-2">Manage tasks</span>
+                            <span class="font-medium mb-2">Manage tasks</span>
                             <table class="border border-collapse border-gray-200">
                               <thead class="hidden">
                                 <tr>
@@ -381,7 +396,7 @@
                       class="lg:w-5/12 md:w-3/4 inline-block mt-20 p-8 bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all"
                     >
                       <div class="flex flex-1 justify-between mb-6">
-                        <h1 class="text-2xl font-bold text-left text-gray-900 tracking-tighter">Create a task</h1>
+                        <h1 class="text-3xl font-bold text-left text-gray-900 tracking-tighter">Create a task</h1>
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           onclick="document.querySelector('#taskModal').classList.add('hidden')"
@@ -441,11 +456,14 @@
                         </div>
                         <div class="flex flex-nowrap space-x-2">
                           <div class="flex flex-col flex-1">
-                            <label for="name" class="text-sm mb-1 font-normal">Description</label>
+                            <div class="flex">
+                              <label for="name" class="text-sm mb-1 font-normal">Description</label>
+                            </div>
                             <textarea
                               class="text-base rounded-md border border-gray-300 p-4 h-36 overflow-y-scroll resize-none focus:outline-none focus:border-blue-400"
-                              name="name"
+                              name="taskDesc"
                               type="text"
+                              maxlength="280"
                             ></textarea>
                           </div>
                         </div>
@@ -531,15 +549,29 @@
             <p class="text-gray-900 self-end font-extrabold text-4xl tracking-tighter">Task Feed</p>
           </div>
           <div class="space-y-4" l-for="(item, index) in tasks">
-            <div class="flex flex-1">
-              <div class="flex-1 ring-1 ring-black ring-opacity-5 transition-all hover:shadow-lg bg-white p-8 rounded-lg">
-                <div class="flex-1 space-y-2">
+            <div class="task flex flex-1 transition-all duration-500">
+              <div class="flex-1 justify-between ring-1 ring-black ring-opacity-5 transition-all hover:shadow-lg bg-white rounded-lg">
+                <div class="space-y-2 border-b border-gray-100 p-8">
                   <h1 class="text-lg font-normal text-gray-900">New task from <span class="font-bold">Campaign Name</span></h1>
-                  <!-- <span class="text-gray-500 text-sm">By contractorName &middot; Feb 18, 2020</span> -->
                   <ul class="space-x-1">
                     <li class="inline-block rounded-md bg-gray-100 text-gray-400 py-1 px-3 font-normal text-sm">Category1</li>
                     <li class="inline-block rounded-md bg-gray-100 text-gray-400 py-1 px-3 font-normal text-sm">Category1</li>
                   </ul>
+                </div>
+                <div class="flex flex-1 flex-col items-center p-8">
+                  <blockquote class="w-1/2 mb-8 rounded-md serif-custom tracking-wide leading-relaxed border-l-8 border-gray-300 bg-gray-100 p-12">
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Rerum et unde adipisci quas accusantium expedita vitae maxime commodi
+                    saepe debitis animi veniam autem <em>dolores distinctio</em> vero provident praesentium reprehenderit temporibus, ut tenetur
+                    quisquam quia error corporis sequi! Animi, voluptatem laboriosam?
+                  </blockquote>
+                  <div class="flex flex-wrap w-4/5 justify-center content-around">
+                    <button
+                      class="m-1 cursor-pointer rounded-md border border-gray-300 shadow-sm text-base px-8 py-3 bg-white font-normal transition-all hover:shadow-md text-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                      @click="completeTask($el)"
+                    >
+                      this is a test answer
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>

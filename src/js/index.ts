@@ -26,7 +26,6 @@ const campaignsState = {
   },
 };
 
-
 interface campaigns {
   id: string;
   name: string;
