@@ -1,10 +1,17 @@
 import { init, component } from 'lucia/dist/lucia.esm';
-import query from './query';
+import { query, client } from './query';
 
 init();
 
-const campaignsState = {
-  campaigns: [],
+const campaignsState = component({
+  campaigns: [{
+   name: "Welcome to Katze!",
+   description: "Welcome to Katze! We hope you have a great time using the app!! :)",
+   completed: false,
+  }, {
+    name: "Lemons or oranges?", description: "uwu, completed: false", completed: false
+  }],
+  a: "something",
   async setCampaigns() {
     const campaignQuery = `
     query {
@@ -22,7 +29,9 @@ const campaignsState = {
     const { data } = await query(campaignQuery);
     this.campaigns = data.campaigns.filter((campaign) => !campaign.completed);
   },
-};
+});
+
+campaignsState.mount("#campaignHtml")
 
 interface campaigns {
   id: string;
@@ -54,6 +63,43 @@ const ownedCampaigns = async (name: string): Promise<campaigns[]> => {
 
   return data.campaigns;
 };
+
+
+const createCampaign = async (userId: string, name: string, description: string) => {
+  client.mutation(
+    `
+    mutation CreateCampaign($name: String!,
+      $contractor: String!,
+      $options: [String!]!,
+      $description: String!
+      ) {
+      createCampaign(
+        name: $name,
+        contractor: $contractor,
+        options: $options,
+        description: $description
+      ) {
+        name
+        id
+        options
+        contractor
+        description
+      }
+    }
+    `, {
+    name: name,
+    contractor: userId,
+    options: ["a", "b"],
+    description: description,
+  }).toPromise().then(result => {
+    if(result.data) {
+      return result.data
+    }
+    else {
+      return false
+    }
+  })
+}
 
 const login = async (username: string, password: string): Promise<boolean> => {
   let data = await query(
@@ -91,3 +137,17 @@ const signup = async (username: string, password: string) => {
 
   return user.data.createUser.username;
 };
+
+let campaignForm = document.getElementById("campaignButton");
+campaignForm.addEventListener("click", async () => {
+  console.log("smh");
+  let name = document.getElementById("campaignFormName").value;
+  let description = document.getElementById("campaignFormDescription").value;
+  console.log(`name: ${name}`)
+  let a=  await createCampaign('John Doe', name, description);
+    campaignsState.campaigns.push({
+      name: a.name,
+      description: a.description,
+      completed: a.completed
+    })
+})

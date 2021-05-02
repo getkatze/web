@@ -19,6 +19,7 @@
     "sass": "^1.32.12"
   },
   "dependencies": {
+    "@apollo/client": "^3.3.16",
     "@urql/core": "^2.0.0",
     "graphql": "^15.5.0",
     "lucia": "^0.5.1",
