@@ -187,7 +187,7 @@
           </div>
           <div class="grid grid-flow-row-dense grid-cols-3 gap-8 mt-8" l-for="(item, index) in campaigns">
             <div class="flex flex-col relative p-8 ring-1 ring-black ring-opacity-5 transition-all hover:shadow-lg bg-white rounded-lg">
-              <div class="flex mb-2 justify-between">
+              <div class="flex mb-2 justify-between" @click.outside="if (!$el.children[2].classList.contains('hidden')) { $el.children[2].classList.add('hidden') }">
                 <!-- <span l-text="this.item.name"></span> -->
                 <div class="space-y-2">
                   <h1 class="text-lg font-semibold">My Campapign Name</h1>
