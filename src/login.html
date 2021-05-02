@@ -11,16 +11,16 @@
     <title>Login - Katze</title>
   </head>
   <body>
-    <div class="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+    <div class="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8" l-state>
       <div class="max-w-md w-full">
         <div>
           <h2 class="mt-6 text-center text-3xl leading-9 font-extrabold text-gray-900">
             Login to your account
           </h2>
           <br />
-          <p class="text-center link"><a href="./dashboard.html">Continue as guest </a></p>
+          <p class="text-center link"><a href="./dashboard.html">Continue as guest</a></p>
         </div>
-        <form class="mt-8" @submit.prevent="alert('Invalid credentials')" method="POST">
+        <form class="mt-8" @submit.prevent="alert(`We weren't able to find an account, so we made one for you!`); location = `${location.origin}/dashboard.html`" method="POST">
           <input type="hidden" name="remember" value="true" />
           <div class="rounded-full shadow-sm">
             <div class="mb-3">
