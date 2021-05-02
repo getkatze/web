@@ -231,21 +231,54 @@
                               Create task
                             </div>
                           </div>
-                          <table class="border border-collapse border-gray-200">
-                            <thead class="hidden">
+                          <table class="border-collapse">
+                            <thead>
                               <tr>
-                                <th class="py-2 px-3">Name</th>
-                                <th class="py-2 px-3">Action</th>
+                                <th class="py-2 px-3 border border-gray-200">Category</th>
+                                <th class="py-2 px-3 border border-gray-200">Content</th>
+                                <th class="py-2 px-3 border border-gray-200">Actions</th>
                               </tr>
                             </thead>
                             <tbody>
                               <tr>
-                                <td class="py-2 px-3">Sample Task</td>
-                                <td class="py-2 px-3">Sample Task</td>
+                                <td class="py-2 px-3 border border-gray-200">Sample Task</td>
+                                <td class="py-2 px-3 border border-gray-200">Sample Task</td>
+                                <td class="py-2 px-3 border border-gray-200">
+                                  <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="h-5 w-5 text-red-500"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                  >
+                                    <path
+                                      stroke-linecap="round"
+                                      stroke-linejoin="round"
+                                      stroke-width="2"
+                                      d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                                    />
+                                  </svg>
+                                </td>
                               </tr>
                               <tr>
-                                <td class="py-2 px-3">Sample Task</td>
-                                <td class="py-2 px-3">Sample Task</td>
+                                <td class="py-2 px-3 border border-gray-200">Sample Task</td>
+                                <td class="py-2 px-3 border border-gray-200">Sample Task</td>
+                                <td class="py-2 px-3 border border-gray-200">
+                                  <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="h-5 w-5 text-red-500"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                  >
+                                    <path
+                                      stroke-linecap="round"
+                                      stroke-linejoin="round"
+                                      stroke-width="2"
+                                      d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                                    />
+                                  </svg>
+                                </td>
                               </tr>
                             </tbody>
                           </table>
@@ -269,7 +302,7 @@
                     class="lg:w-5/12 md:w-3/4 inline-block mt-20 p-8 bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all"
                   >
                     <div class="flex flex-1 justify-between mb-6">
-                      <h1 class="text-3xl font-bold text-left text-gray-900 tracking-tighter">Create a task</h1>
+                      <h1 class="text-3xl font-bold text-left text-gray-900 tracking-tighter">Task Information</h1>
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         onclick="document.querySelector('#taskModal').classList.add('hidden')"
@@ -283,7 +316,7 @@
                     </div>
                     <form class="flex flex-1 flex-col space-y-4">
                       <!-- <div class="flex flex-nowrap space-x-2"> -->
-                        <!-- <div class="flex flex-col flex-1">
+                      <!-- <div class="flex flex-col flex-1">
                           <label for="name" class="text-sm mb-1 font-normal">Name</label>
                           <input
                             class="text-base rounded-md border border-gray-300 p-4 focus:outline-none focus:border-blue-400"
@@ -291,7 +324,7 @@
                             type="text"
                           />
                         </div> -->
-                        <!-- <div class="flex flex-col flex-1">
+                      <!-- <div class="flex flex-col flex-1">
                           <label for="campaign" class="text-sm mb-1 font-normal">Campaign</label>
                           <select
                             class="text-base rounded-md border border-gray-300 p-4 flex-1 focus:outline-none focus:border-blue-400"
@@ -362,7 +395,7 @@
                       <div class="sm:flex sm:items-start">
                         <div class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
                           <svg
-                            class="h-6 w-6 text-red-600"
+                            class="h-5 w-5 text-red-600"
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"
                             viewBox="0 0 24 24"
